@@ -1,6 +1,7 @@
 package com.niit.jap.service;
 
 import com.niit.jap.Domain.Customer;
+import com.niit.jap.exception.CustomerAlreadyExistsException;
 import com.niit.jap.exception.CustomerNotFoundException;
 import com.niit.jap.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ public class CustomerServiceImpl implements CustomerService{
      }
 
     @Override
-    public Customer saveCustomer(Customer customer) {
+    public Customer saveCustomer(Customer customer)  throws CustomerAlreadyExistsException {
         return customerRepository.save(customer);
     }
 
@@ -24,9 +25,9 @@ public class CustomerServiceImpl implements CustomerService{
     }
 
     @Override
-    public boolean deleteCustomer(int customerId) throws ClassNotFoundException {
+    public boolean deleteCustomer(int customerId) throws CustomerNotFoundException {
          if (customerRepository.findById(customerId).isEmpty()){
-             throw new ClassNotFoundException();
+             throw new CustomerNotFoundException();
          }
          else {
              customerRepository.deleteById(customerId);

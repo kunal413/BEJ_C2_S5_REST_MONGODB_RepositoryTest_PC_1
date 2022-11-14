@@ -1,4 +1,4 @@
-package com.niit.jap;
+package com.niit.jap.repository;
 import com.niit.jap.Domain.Customer;
 import com.niit.jap.Domain.Product;
 import com.niit.jap.repository.CustomerRepository;
